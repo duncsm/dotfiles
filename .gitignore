@@ -1,0 +1,7 @@
+.ssh/
+.config/gcloud/
+.config/gws/
+.netskope/
+.snowflake/
+.docker/config.json
+.zshrc_local

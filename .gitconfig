@@ -1,0 +1,18 @@
+[user]
+	name = Duncan Smith
+	email = duncan.smith@deliveroo.co.uk
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[trace2]
+	eventTarget = /Users/duncansmith/.devbox/git-trace2.jsonl
+	eventBrief = true
+[core]
+	excludesfile = /Users/duncansmith/.config/git/ignore
+[init]
+	defaultBranch = main
