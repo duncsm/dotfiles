@@ -14,7 +14,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'     # Case-insensitive tab c
 zstyle ':completion:*' menu select                      # Arrow-key selectable completion menu
 
 alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-
+alias lazydotfiles='GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME lazygit'
 # restoredotfiles: bootstrap dotfiles on a fresh machine from github.com/duncsm/dotfiles
 # Chicken-and-egg note: this function lives in the .zshrc you're trying to restore,
 # so on a *brand new* machine you won't have it yet. Two ways to bootstrap:
@@ -57,6 +57,7 @@ restoredotfiles () {
     eval "$dot config --local status.showUntrackedFiles no"
     echo "Done. Open a new shell to pick up the restored config."
 }
+
 alias cp='cp -iv'                               # Preferred 'cp' implementation
 alias mv='mv -iv'                               # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                         # Preferred 'mkdir' implementation
