@@ -14,7 +14,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'     # Case-insensitive tab c
 zstyle ':completion:*' menu select                      # Arrow-key selectable completion menu
 
 alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-alias lazydotfiles='GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME lazygit'
 # restoredotfiles: bootstrap dotfiles on a fresh machine from github.com/duncsm/dotfiles
 # Chicken-and-egg note: this function lives in the .zshrc you're trying to restore,
 # so on a *brand new* machine you won't have it yet. Two ways to bootstrap:
@@ -78,7 +77,9 @@ alias c='clear'                                 # c:            Clear terminal d
 alias path='echo $PATH | tr ":" "\n"'           # path:         Echo all executable Paths
 alias fix_stty='stty sane'                      # fix_stty:     Restore terminal settings when screwed up
 alias brewfull='brew update && brew upgrade && brew cleanup'
-alias avpn='ssh -i "~/Dropbox/AWSVPN_London/2025/aws2025.pem" ec2-user@aws11elm.duckdns.org' #AWS vpn login
+alias lg='lazygit'                              # quicky shortcut for launching lazygit
+alias lgdf='GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME lazygit'
+
 mcd () { mkdir -p "$1" && cd "$1"; }            # mcd:          Makes new Dir and jumps inside
 trash () { command mv "$@" ~/.Trash ; }         # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$@" >& /dev/null; }        # ql:           Opens any file in MacOS Quicklook Preview
