@@ -14,6 +14,49 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'     # Case-insensitive tab c
 zstyle ':completion:*' menu select                      # Arrow-key selectable completion menu
 
 alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
+# restoredotfiles: bootstrap dotfiles on a fresh machine from github.com/duncsm/dotfiles
+# Chicken-and-egg note: this function lives in the .zshrc you're trying to restore,
+# so on a *brand new* machine you won't have it yet. Two ways to bootstrap:
+#   1. Run the commands below by hand (or copy them from the GitHub repo), or
+#   2. One-liner:
+#      git clone --bare git@github.com:duncsm/dotfiles.git ~/.dotfiles && \
+#        git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout && \
+#        git --git-dir=$HOME/.dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
+# Once .zshrc is restored and a new shell is started, `restoredotfiles` is available
+# for re-running on subsequent machines.
+restoredotfiles () {
+    local repo="git@github.com:duncsm/dotfiles.git"
+    local gitdir="$HOME/.dotfiles"
+    local backup="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
+
+    if [ -d "$gitdir" ]; then
+        echo "Error: $gitdir already exists. Aborting to avoid clobbering."
+        return 1
+    fi
+
+    echo "Cloning $repo into $gitdir..."
+    git clone --bare "$repo" "$gitdir" || return 1
+
+    local dot="git --git-dir=$gitdir --work-tree=$HOME"
+
+    # Try checkout; if it fails because files already exist (e.g. macOS default .zshrc),
+    # back them up and retry.
+    if ! eval "$dot checkout" 2>/dev/null; then
+        echo "Checkout conflicts — backing up clashing files to $backup"
+        mkdir -p "$backup"
+        eval "$dot checkout" 2>&1 | \
+            grep -E "^\s+\S" | awk '{print $1}' | \
+            while read -r f; do
+                mkdir -p "$backup/$(dirname "$f")"
+                mv "$HOME/$f" "$backup/$f"
+            done
+        eval "$dot checkout" || { echo "Checkout still failing — see $backup"; return 1; }
+    fi
+
+    eval "$dot config --local status.showUntrackedFiles no"
+    echo "Done. Open a new shell to pick up the restored config."
+}
 alias cp='cp -iv'                               # Preferred 'cp' implementation
 alias mv='mv -iv'                               # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                         # Preferred 'mkdir' implementation
