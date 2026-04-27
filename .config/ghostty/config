@@ -1,0 +1,22 @@
+# Font
+#font-family = SF Mono
+#font-family = FiraCode Nerd Font Mono
+#font-family = Hack Nerd Font Propo
+#font-family = RobotoMono Nerd Font
+#font-size = 13
+
+# Colors
+#theme = One Dark
+theme = Catppuccin Mocha
+
+# Scrollback
+scrollback-limit = 50000
+
+# Splits
+unfocused-split-opacity = 0.85
+split-divider-color = #3e4451
+
+# Working directory
+working-directory = ~/Documents
+
+cursor-click-to-move = true

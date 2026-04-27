@@ -1,0 +1,85 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+# Order of appearance
+format = """
+$shlvl\
+$directory\
+$git_branch\
+$git_status\
+$ruby\
+${custom.go_mod}\
+${custom.docker_backend}\
+$line_break\
+$character"""
+
+[character]
+# Change these symbols to whatever you like!
+success_symbol = "[❯](bold green) "
+error_symbol = "[❯](bold red) "
+#success_symbol = "[=>](bold green)"
+#error_symbol = "[=>](bold red)"
+#success_symbol = "[󰄬](bold green) " # Nerd Font checkmark
+#error_symbol = "[󰅙](bold red) "    # Nerd Font X-circle
+
+[directory]
+style = "bold blue"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = " "
+style = "bold purple"
+
+[git_status]
+style = "bold red"
+
+[ruby]
+# This will show your rbenv version automatically
+symbol = "💎 "
+style = "bold red"
+
+[golang]
+disabled = true
+
+[custom.go_mod]
+description = "Show Go version from .go-version or go.mod (the version the repo expects)"
+command = '''
+if [ -f .go-version ]; then
+  printf 'v%s' "$(tr -d '[:space:]' < .go-version)"
+elif [ -f go.mod ]; then
+  ver=$(awk '/^go [0-9]/ {print $2; exit}' go.mod)
+  [ -n "$ver" ] && printf 'v%s' "$ver"
+fi
+'''
+when = '[ -f .go-version ] || [ -f go.mod ]'
+symbol = "🐹 "
+format = "via [$symbol$output ]($style)"
+style = "bold cyan"
+shell = ["bash", "--noprofile", "--norc"]
+
+[docker_context]
+disabled = true
+
+[custom.docker_backend]
+description = "Show Docker backend (orbstack vs docker-desktop)"
+command = '''
+ctx=$(awk -F'"' '/"currentContext"/ {print $4}' "$HOME/.docker/config.json" 2>/dev/null)
+case "$ctx" in
+  orbstack)      echo "🪐 orbstack" ;;
+  desktop-linux) echo "🐳 docker-desktop" ;;
+  colima)        echo "🦙 colima" ;;
+  "")            echo "🐳 default" ;;
+  *)             echo "🐳 $ctx" ;;
+esac
+'''
+when = '[ -f Dockerfile ] || [ -f docker-compose.yml ] || [ -f compose.yaml ]'
+format = "via [$output]($style) "
+style = "bold blue"
+shell = ["bash", "--noprofile", "--norc"]
+
+[shlvl]
+disabled = false
+symbol = "↕️ "
+threshold = 2
+style = "bold yellow"
