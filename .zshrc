@@ -77,6 +77,9 @@ alias c='clear'                                 # c:            Clear terminal d
 alias path='echo $PATH | tr ":" "\n"'           # path:         Echo all executable Paths
 alias fix_stty='stty sane'                      # fix_stty:     Restore terminal settings when screwed up
 alias brewfull='brew update && brew upgrade && brew cleanup'
+alias brewdump='brew bundle dump --file=~/.config/homebrew/Brewfile --force --describe --no-vscode'  # brewdump: refresh Brewfile snapshot of installed formulae/casks/mas apps (excludes VS Code extensions; Cursor is the IDE in use)
+alias brewrestore='brew bundle install --file=~/.config/homebrew/Brewfile'              # brewrestore: install everything listed in Brewfile (safe, idempotent)
+alias brewcheck='brew bundle check --file=~/.config/homebrew/Brewfile --verbose'        # brewcheck: report differences between system and Brewfile, no changes
 alias lg='lazygit'                              # quicky shortcut for launching lazygit
 alias lgdf='GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME lazygit'
 

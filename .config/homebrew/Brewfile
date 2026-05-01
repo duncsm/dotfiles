@@ -1,0 +1,94 @@
+tap "deliveroo/tools"
+tap "homebrew/services"
+# Console Matrix
+brew "cmatrix"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Load/unload environment variables based on $PWD
+brew "direnv"
+# GitHub command-line tool
+brew "gh"
+# Distributed revision control system
+brew "git"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Open source programming language to build simple/reliable/efficient software
+brew "go@1.25"
+# Improved top (interactive process viewer)
+brew "htop"
+# Simple terminal UI for git commands
+brew "lazygit"
+# NCurses Disk Usage
+brew "ncdu"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Create, run, and share large language models (LLMs)
+brew "ollama"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
+# CLI for Playwright: record/generate code, inspect selectors, take screenshots
+brew "playwright-cli"
+# Python version management
+brew "pyenv"
+# CLI for snowflake
+brew "snowflake-cli"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Terminal multiplexer
+brew "tmux"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
+# Generates specified files within a project
+brew "deliveroo/tools/roo-generate"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
+# Anthropic's official Claude AI desktop app
+cask "claude"
+# Ghostty-based terminal with vertical tabs and notifications for AI coding agents
+cask "cmux"
+# Write, edit, and chat about your code with AI
+cask "cursor"
+# App to build and share containerised applications and microservices
+cask "docker-desktop"
+cask "font-fira-code-nerd-font"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "gcloud-cli"
+# Speech to text application
+cask "handy"
+# Terminal emulator as alternative to Apple's Terminal app
+cask "iterm2"
+# Enable generative AI features in iTerm2
+cask "itermai"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# Interact with Ollama models
+cask "ollamac"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
+# Move and resize windows with ease
+cask "spectacle"
+# Music streaming service
+cask "spotify"
+# Text editor for code, markup and prose
+cask "sublime-text"
+# Virtual machines UI using QEMU
+cask "utm"
+# Dynamic Island-style notifications for Claude Code CLI sessions
+cask "vibe-notch"
+# Virtualization tool
+cask "virtualbuddy"
+# Open-source code editor
+cask "visual-studio-code"
+# Rust-based terminal
+cask "warp"
+vscode "anthropic.claude-code"
+vscode "doordash.devbox"
+vscode "github.copilot-chat"
+vscode "golang.go"
+vscode "ms-azuretools.vscode-containers"
+vscode "ms-vscode-remote.remote-containers"
+vscode "ms-vscode.makefile-tools"
+vscode "openai.chatgpt"
+go "github.com/go-delve/delve/cmd/dlv"
+go "golang.org/x/tools/gopls"
+go "honnef.co/go/tools/cmd/staticcheck"
