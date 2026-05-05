@@ -28,6 +28,8 @@ brew "ollama"
 brew "pkgconf"
 # CLI for Playwright: record/generate code, inspect selectors, take screenshots
 brew "playwright-cli"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
 # Python version management
 brew "pyenv"
 # CLI for snowflake
@@ -65,8 +67,6 @@ cask "obsidian"
 cask "ollamac"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
-# Move and resize windows with ease
-cask "spectacle"
 # Music streaming service
 cask "spotify"
 # Text editor for code, markup and prose
